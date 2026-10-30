@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Noturno | Café, doces e boa conversa à noite</title>
+<meta name="description" content="Café Noturno: cafeteria que abre quando a cidade desacelera. Veja o cardápio, os horários e como chegar.">
+<meta name="theme-color" content="#120d0a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120d0a;--panel:#1b1410;--ink:#efe4d3;--muted:#a8998a;--line:rgba(239,228,211,.16);--accent:#d08a52;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
+.label{font:500 .75rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+em{font-style:italic;color:var(--accent)}
+section{padding:5rem 0}
+h2{font:500 clamp(2.2rem,5vw,3.4rem)/1.05 var(--serif);margin:.6rem 0 1.6rem}
+
+header{position:sticky;top:0;z-index:10;background:rgba(18,13,10,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font:italic 500 1.5rem var(--serif);text-decoration:none}
+nav ul{display:flex;gap:1.8rem;list-style:none}
+nav a{font:500 .74rem var(--sans);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+
+.hero{padding:6rem 0 5.5rem;text-align:center}
+.status{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem 1rem;border:1px solid var(--line);border-radius:99px;font-size:.85rem;color:var(--muted);margin-bottom:2rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.status.open .dot{background:#7fbf7f}
+.hero h1{font:500 clamp(3.4rem,13vw,8rem)/.95 var(--serif);letter-spacing:-.02em}
+.hero p{font:italic 400 clamp(1.3rem,3vw,1.7rem)/1.4 var(--serif);color:var(--muted);margin:1.6rem auto 2.4rem;max-width:30ch}
+.go{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:.9rem 2rem;border:1px solid var(--accent);text-decoration:none;font:500 .76rem var(--sans);letter-spacing:.2em;text-transform:uppercase;transition:background .25s,color .25s}
+.btn:hover,.btn.fill{background:var(--accent);color:#1a0f07}
+.btn.fill:hover{background:transparent;color:var(--ink)}
+.in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.in:nth-child(2){animation-delay:.1s}.in:nth-child(3){animation-delay:.2s}.in:nth-child(4){animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+.about{background:var(--panel);border-block:1px solid var(--line)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.about p{color:var(--muted)}.about p+p{margin-top:1rem}
+
+.tabs{display:flex;gap:.5rem;overflow-x:auto;margin-bottom:2rem;padding-bottom:.3rem}
+.tabs button{flex:none;background:none;border:1px solid var(--line);color:var(--muted);padding:.55rem 1.3rem;font:500 .74rem var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#1a0f07}
+.menu{list-style:none;max-width:760px}
+.item{padding:1.1rem 0;border-top:1px solid var(--line);animation:rise .5s both}
+.item:last-child{border-bottom:1px solid var(--line)}
+.row{display:flex;align-items:baseline;gap:.8rem}
+.row h3{font:500 1.55rem/1.2 var(--serif)}
+.row .fill{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px)}
+.price{font:500 1.35rem var(--serif);color:var(--accent)}
+.item p{color:var(--muted);font-size:.98rem}
+.nota{margin-top:1.2rem;font-size:.85rem;color:var(--muted)}
+
+.visit{background:var(--panel);border-top:1px solid var(--line)}
+.visit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+table{width:100%;border-collapse:collapse}
+td{padding:.75rem 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;color:var(--muted)}
+tr.today td{color:var(--accent);font-weight:500}
+address{font-style:normal;color:var(--muted);margin-bottom:1.6rem}
+address strong{display:block;color:var(--ink);font:500 1.5rem var(--serif);margin-bottom:.2rem}
+footer{padding:1.8rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+@media (max-width:760px){
+  section{padding:3.5rem 0}.hero{padding:4rem 0}
+  .about .wrap,.visit .wrap{grid-template-columns:1fr;gap:2rem}
+  nav ul{gap:1rem}nav a{font-size:.68rem;letter-spacing:.12em}
+  .logo{font-size:1.3rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#inicio">Café Noturno</a>
+    <nav aria-label="Principal"><ul>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#visita">Visita</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="in"><span class="status" id="status"><span class="dot"></span><span id="status-txt">Verificando horário…</span></span></div>
+    <h1 class="in">Café <em>Noturno</em></h1>
+    <p class="in">Aberto quando a cidade desacelera.</p>
+    <div class="go in">
+      <a class="btn fill" href="#cardapio">Ver cardápio</a>
+      <a class="btn" href="#visita">Como chegar</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap">
+    <div>
+      <span class="label">A casa</span>
+      <h2>Um refúgio para <em>depois</em> do expediente.</h2>
+    </div>
+    <div>
+      <p>Luz baixa, música suave e café feito com calma. O Noturno nasceu para quem quer uma pausa sem pressa, seja para conversar, ler ou só ficar em silêncio.</p>
+      <p>Torramos grãos selecionados em pequenos lotes e assamos os doces todos os dias, sempre em poucas unidades.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cardapio">
+  <div class="wrap">
+    <span class="label">Cardápio</span>
+    <h2>O que servimos</h2>
+    <div class="tabs" role="tablist" aria-label="Categorias do cardápio" id="tabs"></div>
+    <ul class="menu" id="menu" role="tabpanel"></ul>
+    <p class="nota">Valores ilustrativos, sujeitos a alteração.</p>
+  </div>
+</section>
+
+<section class="visit" id="visita">
+  <div class="wrap">
+    <div>
+      <span class="label">Horários</span>
+      <h2>Quando abrimos</h2>
+      <table id="horarios"></table>
+    </div>
+    <div>
+      <span class="label">Endereço</span>
+      <h2>Venha nos visitar</h2>
+      <address><strong>Rua das Acácias, 120</strong>Centro, sua cidade</address>
+      <a class="btn" href="#" aria-disabled="true">Abrir no mapa</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Café Noturno</span>
+    <span>Projeto de portfólio por <a href="https://thyego17.github.io/Portif-lio/">Thyego</a></span>
+  </div>
+</footer>
+
+<script>
+const MENU={
+  "Cafés":[
+    ["Espresso","Dose curta e intensa, com notas de chocolate amargo.","7"],
+    ["Cappuccino","Espresso, leite vaporizado e espuma cremosa.","13"],
+    ["Café coado","Grão do dia, preparado na hora no coador de pano.","9"],
+    ["Mocha","Espresso com chocolate belga e leite vaporizado.","16"]],
+  "Bebidas":[
+    ["Chá de especiarias","Canela, cravo e cardamomo em infusão lenta.","12"],
+    ["Chocolate quente","Chocolate meio amargo derretido no leite.","15"],
+    ["Café gelado","Cold brew de 18 horas servido com gelo.","14"],
+    ["Água com gás e limão","Refrescante, para acompanhar os doces.","8"]],
+  "Doces":[
+    ["Bolo de cenoura","Cobertura de chocolate e massa bem úmida.","14"],
+    ["Torta de limão","Massa amanteigada e merengue maçaricado.","16"],
+    ["Brownie","Com nozes e um toque de sal marinho.","13"],
+    ["Pudim de café","Calda de caramelo e café, sem furinhos.","12"]],
+  "Salgados":[
+    ["Pão de queijo","Porção com cinco unidades quentinhas.","12"],
+    ["Torrada com ricota","Pão de fermentação natural, ricota e mel.","17"],
+    ["Quiche do dia","Pergunte ao balcão qual é o recheio de hoje.","18"],
+    ["Sanduíche de peru","Peito de peru, queijo e folhas no pão artesanal.","19"]]
+};
+const HOURS=[
+  ["Domingo",16,25],["Segunda",null],["Terça",16,25],["Quarta",16,25],
+  ["Quinta",16,25],["Sexta",16,26],["Sábado",16,26]];
+const fmt=h=>{h=h%24;return String(h).padStart(2,"0")+"h"};
+
+const tabs=document.getElementById("tabs"),menu=document.getElementById("menu");
+function show(cat){
+  tabs.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.dataset.cat===cat));
+  menu.innerHTML=MENU[cat].map((i,n)=>`<li class="item" style="animation-delay:${n*60}ms"><div class="row"><h3>${i[0]}</h3><span class="fill"></span><span class="price">R$ ${i[2]}</span></div><p>${i[1]}</p></li>`).join("");
+}
+Object.keys(MENU).forEach((c,i)=>{
+  const b=document.createElement("button");
+  b.textContent=c;b.dataset.cat=c;b.setAttribute("role","tab");
+  b.addEventListener("click",()=>show(c));tabs.appendChild(b);
+});
+show("Cafés");
+
+const now=new Date(),d=now.getDay(),h=now.getHours()+now.getMinutes()/60;
+document.getElementById("horarios").innerHTML=HOURS.map((r,i)=>
+  `<tr class="${i===d?"today":""}"><td>${r[0]}</td><td>${r[1]==null?"Fechado":fmt(r[1])+" às "+fmt(r[2])}</td></tr>`).join("");
+const t=HOURS[d],y=HOURS[(d+6)%7];
+const open=(t[1]!=null&&h>=t[1]&&h<t[2])||(y[1]!=null&&y[2]>24&&h<y[2]-24);
+const st=document.getElementById("status");
+st.classList.toggle("open",open);
+document.getElementById("status-txt").textContent=open?"Aberto agora":"Fechado agora";
+</script>
+</body>
+</html>
